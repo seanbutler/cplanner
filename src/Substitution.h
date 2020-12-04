@@ -17,8 +17,10 @@ public:
     Substitution() {}
     virtual ~Substitution() {}
 
-    void AddBinding(Variable* variable, Constant* constant) {
-        bindings.push_back(std::make_pair<>((Variable*)variable, (Term*)constant));
+    friend std::ostream& operator<<(std::ostream& os, const Substitution& S);
+
+    void AddBinding(Term* t1, Term* t2) {
+        bindings.push_back(std::make_pair<>(t1, t2));
     }
 
     Term* GetValue(Term* variable) {
@@ -35,9 +37,7 @@ public:
         return (Term*)variable;
     }
 
-
-
-    std::vector<std::pair<Variable*, Term*>> bindings;
+    std::vector<std::pair<Term*, Term*>> bindings;
 };
 
 

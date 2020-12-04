@@ -9,51 +9,49 @@
 #include <iostream>
 #include <map>
 
-
 #include "Terms.h"
 
 // ----------------------------------------------------------------------
 
-class Fact {
+class Complex {
 
 public:
-    Fact(Variable A)
+    Complex(Term A)
     {
-        atoms.push_back(A);
+        terms.push_back(A);
     }
 
-    Fact(Variable A1, Variable A2)
+    Complex(Term A1, Term A2)
     {
-        atoms.push_back(A1);
-        atoms.push_back(A2);
+        terms.push_back(A1);
+        terms.push_back(A2);
     }
 
-    Fact(Variable A1, Variable A2, Variable A3)
+    Complex(Term A1, Term A2, Term A3)
     {
-        atoms.push_back(A1);
-        atoms.push_back(A2);
-        atoms.push_back(A3);
+        terms.push_back(A1);
+        terms.push_back(A2);
+        terms.push_back(A3);
     }
 
     void Dump(){
-//        for (auto A : atoms) {
-//            std::cout << A. << " ";
-//        }
+        for (auto A : terms) {
+            std::cout << A << " ";
+        }
+        std::cout << std::endl;
     }
 
-    bool Equals(Fact F) {
+    bool Equals(Complex F) {
 //        unsigned int i=0;
-//        for (auto A : atoms) {
-//            if ( F.atoms[i] != A )
+//        for (auto A : terms) {
+//            if ( F.terms[i] != A )
 //                return false;
 //            i++;
 //        }
         return true;
     }
 
-    std::vector<Variable> atoms;
+    std::vector<Term> terms;
 };
-
-
 
 #endif //CPPPL_COMPLEX_H

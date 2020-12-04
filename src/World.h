@@ -18,19 +18,17 @@ public:
     {
     }
 
-    void Add(Fact F){
+    void Add(Complex F){
         facts.push_back(F);
     }
 
     void Dump(){
         for (auto F : facts) {
             F.Dump();
-            std::cout << std::endl;
         }
-        std::cout << facts.size()  << std::endl;
     }
 
-    std::vector<Fact> facts;
+    std::vector<Complex> facts;
 };
 
 // ----------------------------------------------------------------------
@@ -76,25 +74,23 @@ public:
         }
     }
 
-    void NewPrecondition(Fact F) {
+    void NewPrecondition(Complex F) {
         preconditionList.push_back(F);
     }
 
-    void NewAdditiveFact(Fact F) {
+    void NewAdditiveFact(Complex F) {
         additiveFacts.push_back(F);
     }
 
-    void NewSubtractiveFact(Fact F) {
+    void NewSubtractiveFact(Complex F) {
         subtractiveFacts.push_back(F);
     }
 
-    std::vector<Fact>preconditionList;
-    std::vector<Fact>additiveFacts;
-    std::vector<Fact>subtractiveFacts;
+    std::vector<Complex>preconditionList;
+    std::vector<Complex>additiveFacts;
+    std::vector<Complex>subtractiveFacts;
 };
 
 // ----------------------------------------------------------------------
-
-
 
 #endif //CPPPL_WORLD_H

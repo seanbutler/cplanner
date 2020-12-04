@@ -9,28 +9,18 @@
 
 #include "Terms.h"
 
-
-std::string termTypeStr[] = {
-    "TERM",
-    "VARIABLE",
-    "CONSTANT"
-};
+// ----------------------------------------------------------------------
 
 std::ostream& operator<<(std::ostream& os, const Term& T)
 {
-    os << termTypeStr[T.type] << " " /* << T.type */;
+    std::string termTypeStr[] = {
+            "TERM",
+            "VARIABLE",
+            "CONSTANT"
+    };
+
+    os << "[" << termTypeStr[T.type] << ":" << T.value << "]";
     return os;
 }
 
-std::ostream& operator<<(std::ostream& os, const Variable& V)
-{
-
-    os << termTypeStr[V.type] /*<< " "  << V.type */ << " " << V.name;
-    return os;
-}
-
-std::ostream& operator<<(std::ostream& os, const Constant& C)
-{
-    os << termTypeStr[C.type] /* << " " << C.type */ << " " << C.value;
-    return os;
-}
+// ----------------------------------------------------------------------

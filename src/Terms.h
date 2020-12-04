@@ -9,11 +9,6 @@
 #include <string>
 #include <map>
 
-
-//#include "Substitution.h"
-
-class Substitution;
-
 // ----------------------------------------------------------------------
 
 enum TermType {
@@ -27,53 +22,17 @@ enum TermType {
 class Term {
 
 public:
-    virtual ~Term()             { };
+    Term(std::string V, TermType T = TERM)
+    : value(V)
+    , type(T)
+    {
+    }
+
     virtual TermType getType()  { return type; };
-    virtual Term* dup() = 0;
     friend std::ostream& operator<<(std::ostream& os, const Term& T);
 
-private:
-    static const TermType type = TermType::TERM;
-};
-
-// ----------------------------------------------------------------------
-
-class Variable : public Term {
-public:
-    Variable(std::string N)
-    :   name(N)
-    {
-    }
-
-    virtual TermType getType()                  { return type; }
-    Term * dup()                                { return new Variable(name); }
-    friend std::ostream& operator<<(std::ostream& os, const Variable& T);
-
-    std::string name;
-
-private:
-    static const TermType type = TermType::VARIABLE;
-
-};
-
-// ----------------------------------------------------------------------
-
-
-class Constant : public Term{
-public:
-    Constant(std::string V)
-    :   value(V)
-    {
-
-    }
-    virtual TermType getType()              { return type; }
-    Term* dup()                             { return new Constant(value); }
-    friend std::ostream& operator<<(std::ostream& os, const Constant& C);
-
+    const TermType type;
     std::string value;
-
-public:
-    static const TermType type = TermType::CONSTANT;
 };
 
 // ----------------------------------------------------------------------
