@@ -21,18 +21,21 @@ public:
         bindings.push_back(std::make_pair<>((Variable*)variable, (Term*)constant));
     }
 
-    void AddBinding(Variable* variable, Variable* other) {
-        bindings.push_back(std::make_pair<>((Variable*)variable, (Term*)other));
-    }
-
-    Term* GetValue(Variable* variable) {
+    Term* GetValue(Term* variable) {
         for ( unsigned int i = 0; i<bindings.size(); i++) {
-            if (bindings[i].second->getType() == TermType::VARIABLE) {
 
+            if (bindings[i].second->getType() == TermType::CONSTANT) {
+                return bindings[i].second;
+            }
+
+            if (bindings[i].second->getType() == TermType::VARIABLE) {
+                return GetValue(bindings[i].second);
             }
         }
         return (Term*)variable;
     }
+
+
 
     std::vector<std::pair<Variable*, Term*>> bindings;
 };

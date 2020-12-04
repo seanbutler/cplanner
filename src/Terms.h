@@ -10,6 +10,10 @@
 #include <map>
 
 
+//#include "Substitution.h"
+
+class Substitution;
+
 // ----------------------------------------------------------------------
 
 enum TermType {
@@ -20,14 +24,14 @@ enum TermType {
 
 // ----------------------------------------------------------------------
 
-
 class Term {
 
 public:
-    virtual ~Term()             {};
+    virtual ~Term()             { };
     virtual TermType getType()  { return type; };
     virtual Term* dup() = 0;
-    Term* clone();
+    friend std::ostream& operator<<(std::ostream& os, const Term& T);
+
 private:
     static const TermType type = TermType::TERM;
 };
@@ -39,23 +43,20 @@ public:
     Variable(std::string N)
     :   name(N)
     {
-
     }
 
-    virtual TermType getType() {return type;}
-    Term * dup(){ return new Variable(name); }
+    virtual TermType getType()                  { return type; }
+    Term * dup()                                { return new Variable(name); }
+    friend std::ostream& operator<<(std::ostream& os, const Variable& T);
 
-//    const Term* getValue(const Substitution & assoc){
-//        return assoc->getBound(this);
-//    }
-
-protected:
     std::string name;
 
 private:
     static const TermType type = TermType::VARIABLE;
 
 };
+
+// ----------------------------------------------------------------------
 
 
 class Constant : public Term{
@@ -65,24 +66,16 @@ public:
     {
 
     }
-    virtual TermType getType() {return type;}
-    static const TermType type = TermType::CONSTANT;
+    virtual TermType getType()              { return type; }
+    Term* dup()                             { return new Constant(value); }
+    friend std::ostream& operator<<(std::ostream& os, const Constant& C);
 
-
-    Term* dup(){
-        return new Constant(value);
-    }
-
-//    const Term* getValue(const Substitution & assoc){
-//        return this;
-//    }
-
-protected:
     std::string value;
+
+public:
+    static const TermType type = TermType::CONSTANT;
 };
 
-
 // ----------------------------------------------------------------------
-
 
 #endif //CPPPL_TERMS_H
