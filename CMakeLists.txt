@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.13)
+project(cplanner)
+set(CMAKE_CXX_STANDARD 11)
+
+ADD_EXECUTABLE(cplanner ./src/Terms.cpp ./src/Complex.cpp ./src/Substitution.cpp ./src/World.cpp
+        ./src/main.cpp)
+
