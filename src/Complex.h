@@ -34,6 +34,9 @@ public:
         terms.push_back(A3);
     }
 
+    friend std::ostream& operator<<(std::ostream& os, const Complex& S);
+
+
     void Dump(){
         for (auto A : terms) {
             std::cout << A << " ";

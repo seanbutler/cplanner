@@ -18,6 +18,9 @@ public:
     {
     }
 
+    friend std::ostream& operator<<(std::ostream& os, const World& S);
+
+
     void Add(Complex F){
         facts.push_back(F);
     }

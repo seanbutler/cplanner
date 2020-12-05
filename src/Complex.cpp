@@ -3,3 +3,13 @@
 //
 
 #include "Complex.h"
+
+std::ostream& operator<<(std::ostream& os, const Complex& S)
+{
+    for ( auto B : S.terms){
+        os << B << " ";
+    }
+//    os << std::endl;
+    return os;
+}
+
