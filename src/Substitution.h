@@ -40,5 +40,4 @@ public:
     std::vector<std::pair<Term*, Term*>> bindings;
 };
 
-
 #endif //CPPPL_SUBSTITUTION_H

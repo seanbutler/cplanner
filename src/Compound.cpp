@@ -2,10 +2,11 @@
 // Created by sean on 04/12/2020.
 //
 
-#include "Complex.h"
+#include "Compound.h"
 
-std::ostream& operator<<(std::ostream& os, const Complex& S)
+std::ostream& operator<<(std::ostream& os, const Compound& S)
 {
+    os << S.func << " ";
     for ( auto B : S.terms){
         os << B << " ";
     }

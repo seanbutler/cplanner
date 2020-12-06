@@ -23,16 +23,31 @@ class Term {
 
 public:
     Term(std::string V, TermType T = TERM)
-    : value(V)
-    , type(T)
-    {
+            : value(V)
+            , type(T) {
+
+    }
+
+    Term(const Term & other)
+            : value(other.value)
+            , type(other.type) {
+
+    }
+
+    void operator = (const Term & other ) {
+        this->value = other.value;
+        this->type = other.type;
+    }
+
+    bool operator == (const Term & other ) {
+        return (( this->value == other.value) &&  ( this->type == other.type ));
     }
 
     virtual TermType getType()  { return type; };
     friend std::ostream& operator<<(std::ostream& os, const Term& T);
 
-    const TermType type;
     std::string value;
+    TermType type;
 };
 
 // ----------------------------------------------------------------------
