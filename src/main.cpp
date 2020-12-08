@@ -58,29 +58,27 @@ int main(int argc, char **argv) {
     std::cout << world << std::endl;
 
     Action action;
-    action.NewPrecondition(Compound(
-            Term("LOC", TermType::TERM),
-            Term("luke", TermType::CONSTANT),
-            Term("desert", TermType::CONSTANT)));
+    action.NewPrecondition(Compound( Term("LOC", TermType::TERM),
+                                    Term("luke", TermType::CONSTANT),
+                                    Term("P1", TermType::VARIABLE)));
 
-    action.NewAdditiveFact(Compound(
-            Term("LOC", TermType::TERM),
-            Term("luke", TermType::CONSTANT),
-            Term("cantina", TermType::CONSTANT)));
+    action.NewPrecondition(Compound( Term("PORT", TermType::TERM),
+                                     Term("P1", TermType::CONSTANT),
+                                     Term("P2", TermType::VARIABLE)));
 
-    action.NewSubtractiveFact(Compound(
-            Term("LOC", TermType::TERM),
-            Term("luke", TermType::CONSTANT),
-            Term("desert", TermType::CONSTANT)));
+    action.NewAdditiveFact(Compound(Term("LOC", TermType::TERM),
+                                    Term("luke", TermType::CONSTANT),
+                                    Term("P2", TermType::VARIABLE)));
+
+    action.NewSubtractiveFact(Compound(Term("LOC", TermType::TERM),
+                                    Term("luke", TermType::CONSTANT),
+                                    Term("P1", TermType::VARIABLE)));
 
     std::cout << action << std::endl;
-
 
     action.Apply(world);
 
     std::cout << world << std::endl;
-
-
 
     return 0;
 }

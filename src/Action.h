@@ -46,13 +46,13 @@ public:
         return false;
     }
 
-    void Add(World & W){
+    void Add(World & W) {
         for (auto PC : additiveFacts) {
             W.facts.push_back(PC);
         }
     }
 
-    void Remove(World & W){
+    void Remove(World & W) {
         unsigned int count = 0;
         for (auto PC : subtractiveFacts) {
             for (unsigned int i = 0; i<W.facts.size(); i++) {
@@ -75,6 +75,11 @@ public:
     void NewSubtractiveFact(Compound F) {
         subtractiveFacts.push_back(F);
     }
+
+// TODO refactor so there are +ve and -ve preconditions
+
+//    std::vector<Compound>positivePreconditionList;
+//    std::vector<Compound>negativePreconditionList;
 
     std::vector<Compound>preconditionList;
     std::vector<Compound>additiveFacts;

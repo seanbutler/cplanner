@@ -7,7 +7,7 @@
 std::ostream& operator<<(std::ostream& os, const Action& A)
 {
     for ( auto F : A.preconditionList){
-        os << "IF " << F << std::endl;
+        os << "COND " << F << std::endl;
     }
 
     for ( auto F : A.subtractiveFacts){

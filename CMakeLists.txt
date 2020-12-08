@@ -3,5 +3,5 @@ project(cplanner)
 set(CMAKE_CXX_STANDARD 11)
 
 ADD_EXECUTABLE(cplanner ./src/Terms.cpp src/Compound.cpp ./src/Substitution.cpp ./src/World.cpp
-        ./src/main.cpp src/Action.cpp src/Action.h)
+        ./src/main.cpp src/Action.cpp src/Action.h src/Planner.cpp src/Planner.h)
 

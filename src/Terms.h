@@ -25,7 +25,6 @@ public:
     Term(std::string V, TermType T = TERM)
             : value(V)
             , type(T) {
-
     }
 
     Term(const Term & other)
