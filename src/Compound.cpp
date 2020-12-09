@@ -6,10 +6,12 @@
 
 std::ostream& operator<<(std::ostream& os, const Compound& S)
 {
-    os << S.func << " ";
+    os << S.func << "( ";
     for ( auto B : S.terms){
         os << B << " ";
     }
+    os << ") ";
+
     return os;
 }
 

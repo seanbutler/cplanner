@@ -21,13 +21,13 @@ public:
     friend std::ostream& operator<<(std::ostream& os, const Action& S);
 
     void Apply(World & W){
-        if ( Test(W)) {
+        if ( SimpleTest(W)) {
             Add(W);
             Remove(W);
         }
     }
 
-    bool Test(World & W){
+    bool SimpleTest(World & W){
         unsigned int count = 0;
         for (auto F : W.facts) {
             for (auto PC : preconditionList) {

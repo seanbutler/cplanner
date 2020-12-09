@@ -18,6 +18,7 @@
 // ----------------------------------------------------------------------
 
 #include "Terms.h"
+#include "World.h"
 
 // ----------------------------------------------------------------------
 
@@ -79,9 +80,18 @@ public:
         return false;
     }
 
-    bool Evaluate(Context C) {
+    std::vector<Compound> Query(World & W) {
+        for (auto F : W.facts ) {
+            if ( this->func == F.func ) {  // the funcs must match, no choice
+                for (unsigned int i =0; i<terms.size(); i++){
+                    if (this->terms[i].type == CONSTANT && F.terms[i].type == CONSTANT ) {
 
-        return false;
+                    // WORKING HERE
+
+                    }
+                }
+            }
+        }
     }
 
     Term func;

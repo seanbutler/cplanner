@@ -19,7 +19,7 @@ std::ostream& operator<<(std::ostream& os, const Term& T)
             "CONSTANT"
     };
 
-    os << "[" << termTypeStr[T.type] << ":" << T.value << "]";
+    os << termTypeStr[T.type] << ":" << T.value;
     return os;
 }
 
