@@ -3,6 +3,7 @@
 #ifndef CPPPL_TERMS_H
 #define CPPPL_TERMS_H
 
+#include "Context.h"
 
 #include <iostream>
 #include <vector>
@@ -30,7 +31,6 @@ public:
     Term(const Term & other)
             : value(other.value)
             , type(other.type) {
-
     }
 
     void operator = (const Term & other ) {
@@ -40,6 +40,22 @@ public:
 
     bool operator == (const Term & other ) {
         return (( this->value == other.value) &&  ( this->type == other.type ));
+    }
+
+
+    Term GetActualValue(Context & S) {
+
+        if (this->getType() == TermType::VARIABLE) {
+
+            for (auto B : S.bindings) {
+
+                if ( value == B.first.value ) {
+                    return B.second.GetActualValue(S);
+                }
+            }
+        }
+
+        return *this;
     }
 
     virtual TermType getType()  { return type; };

@@ -10,7 +10,6 @@ std::ostream& operator<<(std::ostream& os, const Compound& S)
     for ( auto B : S.terms){
         os << B << " ";
     }
-//    os << std::endl;
     return os;
 }
 

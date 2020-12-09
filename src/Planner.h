@@ -16,16 +16,15 @@ class Node {
 
 public:
     Node (Node PN, Action A)
-    :   parentNode(PN)
-    ,   action(A)
+//    :   parentNode(PN)
+//    ,   action(A)
     {
 
     }
 
 public:
-    Node & parentNode;
-    Action & action;
-    std::vector<Node&> children;
+//    Node & parentNode;
+//    std::vector<Node&> children;
 };
 
 // ----------------------------------------------------------------------
@@ -33,25 +32,17 @@ public:
 class Planner {
 
 public:
-    Planner(World & initialState)
+    Planner(World & initialState, World & goalState)
     {
-        root.initialState = initialState
-    }
-
-    void Initialise(World & initialState) {
-        root.world = initialState;
     }
 
     void BuildTree(Node previousState) {
-
     }
 
-    Node root;
-
-    World goalState;
+    World initialState;
     Action possibleActions;
 };
 
 // ----------------------------------------------------------------------
 
-#endif //CPLANNER_PLANNER_H
+#endif // CPLANNER_PLANNER_H

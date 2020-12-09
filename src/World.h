@@ -10,11 +10,22 @@
 #include "Terms.h"
 #include "Compound.h"
 
+#include <boost/uuid/uuid.hpp>
+#include <boost/uuid/uuid_generators.hpp>
+#include <boost/uuid/uuid_io.hpp>
+#include <boost/lexical_cast.hpp>
+
 // ----------------------------------------------------------------------
 
 class World {
 public:
-    World() { }
+    World() {
+        uid = boost::uuids::random_generator()();
+    }
+
+    ~World() {
+        facts.clear();
+    }
 
     friend std::ostream& operator<<(std::ostream& os, const World& S);
 
@@ -23,8 +34,8 @@ public:
     }
 
     std::vector<Compound> facts;
+    boost::uuids::uuid uid;
 };
-
 
 // ----------------------------------------------------------------------
 

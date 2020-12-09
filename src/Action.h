@@ -77,7 +77,6 @@ public:
     }
 
 // TODO refactor so there are +ve and -ve preconditions
-
 //    std::vector<Compound>positivePreconditionList;
 //    std::vector<Compound>negativePreconditionList;
 

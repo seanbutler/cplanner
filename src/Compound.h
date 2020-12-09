@@ -5,11 +5,23 @@
 #ifndef CPPPL_COMPLEX_H
 #define CPPPL_COMPLEX_H
 
+// ----------------------------------------------------------------------
 
 #include <iostream>
 #include <map>
 
+#include <boost/uuid/uuid.hpp>
+#include <boost/uuid/uuid_generators.hpp>
+#include <boost/uuid/uuid_io.hpp>
+#include <boost/lexical_cast.hpp>
+
+// ----------------------------------------------------------------------
+
 #include "Terms.h"
+
+// ----------------------------------------------------------------------
+
+// a compound is a list of terms used to represent a logical function (like an s-expression)
 
 // ----------------------------------------------------------------------
 
@@ -36,7 +48,6 @@ public:
 
     Compound & operator=(const Compound & other){
         if (this != &other) {
-            // TODO FILL IN COPY CONSTRUCTOR HERE
             this->func = other.func;
             this->terms.erase(this->terms.begin(), this->terms.end());
             this->terms = other.terms;
@@ -64,6 +75,11 @@ public:
         if ( count >= this->terms.size()){
             return true;
         }
+
+        return false;
+    }
+
+    bool Evaluate(Context C) {
 
         return false;
     }
