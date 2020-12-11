@@ -1,5 +1,4 @@
 
-
 #ifndef CPPPL_TERMS_H
 #define CPPPL_TERMS_H
 
@@ -24,13 +23,13 @@ class Term {
 
 public:
     Term(std::string V, TermType T = TERM)
-            : value(V)
-            , type(T) {
+        : value(V)
+        , type(T) {
     }
 
     Term(const Term & other)
-            : value(other.value)
-            , type(other.type) {
+        : value(other.value)
+        , type(other.type) {
     }
 
     void operator = (const Term & other ) {
@@ -38,17 +37,18 @@ public:
         this->type = other.type;
     }
 
+    virtual ~Term() {}
+
     bool operator == (const Term & other ) {
-        return (( this->value == other.value) &&  ( this->type == other.type ));
+        return ( ( this->value == other.value)
+            && ( this->type == other.type ) );
     }
 
-
+    // TODO - consider moving this over to the context object
     Term GetActualValue(Context & S) {
 
         if (this->getType() == TermType::VARIABLE) {
-
             for (auto B : S.bindings) {
-
                 if ( value == B.first.value ) {
                     return B.second.GetActualValue(S);
                 }

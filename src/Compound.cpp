@@ -6,12 +6,21 @@
 
 std::ostream& operator<<(std::ostream& os, const Compound& S)
 {
-    os << S.func << "( ";
     for ( auto B : S.terms){
         os << B << " ";
     }
-    os << ") ";
 
     return os;
+}
+
+std::vector<Compound> Compound::Query(World & W) {
+    std::vector<Compound> results;
+    for (auto F : W.facts ) {
+        if ( F == *this)
+        {
+            results.push_back(F);
+        }
+    }
+    return results;
 }
 

@@ -17,20 +17,20 @@ int main(int argc, char **argv) {
         std::cout << "===================================================" << std::endl <<
         std::endl;
 
-        World testworld1;
-        testworld1.Add(Compound(Term("location", TERM), Term("luke", CONSTANT), Term("desert", CONSTANT)));
-        testworld1.Add(Compound(Term("portal", TERM), Term("moseisley", CONSTANT), Term("desert", CONSTANT)));
-        testworld1.Add(Compound(Term("portal", TERM), Term("desert", CONSTANT), Term("moseisley", CONSTANT)));
-        std::cout << testworld1 << std::endl;
+        World world;
+        world.Add(Compound(Term("location", TERM), Term("luke", CONSTANT), Term("desert", CONSTANT)));
+        world.Add(Compound(Term("portal", TERM), Term("moseisley", CONSTANT), Term("desert", CONSTANT)));
+        world.Add(Compound(Term("portal", TERM), Term("desert", CONSTANT), Term("moseisley", CONSTANT)));
+        std::cout << world << std::endl;
 
-        Action testaction1;
-        testaction1.NewPrecondition(Compound(Term("location", TERM), Term("luke", CONSTANT), Term("desert", CONSTANT)));
-        testaction1.NewAdditiveFact( Compound(Term("location", TERM), Term("luke", CONSTANT), Term("moseisley", CONSTANT)));
-        testaction1.NewSubtractiveFact( Compound(Term("location", TERM), Term("luke", CONSTANT), Term("desert", CONSTANT)));
-        std::cout << testaction1 << std::endl;
+        Action action;
+        action.NewPrecondition(Compound(Term("location", TERM), Term("luke", CONSTANT), Term("desert", CONSTANT)));
+        action.NewAdditiveFact( Compound(Term("location", TERM), Term("luke", CONSTANT), Term("moseisley", CONSTANT)));
+        action.NewSubtractiveFact( Compound(Term("location", TERM), Term("luke", CONSTANT), Term("desert", CONSTANT)));
+        std::cout << action << std::endl;
 
-        testaction1.Apply(testworld1);
-        std::cout << testworld1 << std::endl;
+        action.Apply(world);
+        std::cout << world << std::endl;
     }
 
     {
@@ -66,11 +66,16 @@ int main(int argc, char **argv) {
         world.Add(Compound(Term("portal", TERM), Term("desert", CONSTANT), Term("moseisley", CONSTANT)));
         std::cout << world << std::endl;
 
-        Compound compound(Term("location", TERM), Term("luke", CONSTANT), Term("P1", VARIABLE));
+        Compound compound(Term("location", TERM), Term("luke", CONSTANT), Term("desert", CONSTANT));
         std::cout << compound << std::endl;
 
-        compound.Query(world, context);
+        std::vector<Compound> res;
+        res = compound.Query(world);
 
+        for(auto C : res) {
+            std::cout << C << std::endl;
+
+        }
     }
 
     return 0;

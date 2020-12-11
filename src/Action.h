@@ -31,7 +31,7 @@ public:
         unsigned int count = 0;
         for (auto F : W.facts) {
             for (auto PC : preconditionList) {
-                if (F.Equals(PC))
+                if (F == PC)
                 {
                     count++;
                     break;
@@ -56,7 +56,7 @@ public:
         unsigned int count = 0;
         for (auto PC : subtractiveFacts) {
             for (unsigned int i = 0; i<W.facts.size(); i++) {
-                if (W.facts[i].Equals(PC))
+                if (W.facts[i] == PC)
                 {
                     W.facts.erase(W.facts.begin()+i);
                 }

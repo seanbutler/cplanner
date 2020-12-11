@@ -3,6 +3,7 @@
 //
 
 #include "World.h"
+#include "Compound.h"
 
 std::ostream& operator<<(std::ostream& os, const World& W)
 {
@@ -10,4 +11,8 @@ std::ostream& operator<<(std::ostream& os, const World& W)
         os << F << std::endl;
     }
     return os;
+}
+
+void World::Add(Compound F){
+    facts.push_back(F);
 }
