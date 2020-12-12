@@ -56,7 +56,7 @@ int main(int argc, char **argv) {
 
     {
         std::cout <<
-        std::endl << "TEST 3 - compound with a var as query over a world" << std::endl;
+        std::endl << "TEST 3 - action with 3 vars as query over a world" << std::endl;
         std::cout << "==================================================" << std::endl <<
         std::endl;
 
@@ -66,16 +66,16 @@ int main(int argc, char **argv) {
         world.Add(Compound(Term("portal", TERM), Term("desert", CONSTANT), Term("moseisley", CONSTANT)));
         std::cout << world << std::endl;
 
-        Compound compound(Term("location", TERM), Term("luke", CONSTANT), Term("desert", CONSTANT));
-        std::cout << compound << std::endl;
+        Action action;
+        action.NewPrecondition( Compound(Term("location", TERM), Term("X", VARIABLE), Term("P1", VARIABLE)) );
+        action.NewPrecondition( Compound(Term("portal", TERM), Term("P1", VARIABLE), Term("P2", VARIABLE)) );
+        action.NewAdditiveFact( Compound(Term("location", TERM), Term("X", VARIABLE), Term("P2", VARIABLE)) );
+        action.NewSubtractiveFact( Compound(Term("location", TERM), Term("X", VARIABLE), Term("P1", VARIABLE)) );
+        std::cout << action << std::endl;
 
-        std::vector<Compound> res;
-        res = compound.Query(world);
+//        action.Apply(world);
+//        std::cout << world << std::endl;
 
-        for(auto C : res) {
-            std::cout << C << std::endl;
-
-        }
     }
 
     return 0;

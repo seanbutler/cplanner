@@ -3,19 +3,31 @@
 //
 
 #include "Action.h"
+#include <iomanip>
 
 std::ostream& operator<<(std::ostream& os, const Action& A)
 {
-    for ( auto F : A.preconditionList){
-        os << "COND " << F << std::endl;
+    const unsigned int width = 8;
+    os << std::left << std::setw(width) << "IF ";
+    for ( auto F = A.preconditionList.begin();
+              F < A.preconditionList.end();
+              F++)
+    {
+        os << *F;
+        os << std::endl;
+
+        if (F != A.preconditionList.end()-1) {
+            os << std::left << std::setw(width) << "AND ";
+        }
+
     }
 
     for ( auto F : A.subtractiveFacts){
-        os << "SUB " <<  F << std::endl;
+        os << std::left << std::setw(width) << "REMOVE " <<  F << std::endl;
     }
 
     for ( auto F : A.additiveFacts){
-        os << "ADD " << F << std::endl;
+        os << std::left << std::setw(width) << "ADD " << F << std::endl;
     }
 
     return os;

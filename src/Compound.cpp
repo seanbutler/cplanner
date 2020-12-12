@@ -13,6 +13,16 @@ std::ostream& operator<<(std::ostream& os, const Compound& S)
     return os;
 }
 
+Compound Compound::Evaluate(Context & C, World & W) {
+    Compound actualCompound;
+    for ( auto T : this->terms ) {
+        actualCompound.terms.push_back(T.GetActualValue(C));
+    }
+    std::cout << actualCompound;
+
+    return actualCompound;
+}
+
 std::vector<Compound> Compound::Query(World & W) {
     std::vector<Compound> results;
     for (auto F : W.facts ) {

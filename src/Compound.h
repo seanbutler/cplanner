@@ -29,6 +29,9 @@
 class Compound {
 
 public:
+    Compound() {
+    }
+
     Compound(Term F) {
         terms.push_back(F);
     }
@@ -77,8 +80,11 @@ public:
         return false;
     }
 
+
+
     friend std::ostream& operator<<(std::ostream& os, const Compound& S);
     std::vector<Compound> Query(World & W);
+    Compound Evaluate(Context & C, World & W);
 
     std::vector<Term> terms;
 };
