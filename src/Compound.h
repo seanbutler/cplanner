@@ -83,8 +83,8 @@ public:
 
 
     friend std::ostream& operator<<(std::ostream& os, const Compound& S);
-    std::vector<Compound> Query(World & W);
     Compound Evaluate(Context & C, World & W);
+    std::vector<Compound> Query(World & W);
 
     std::vector<Term> terms;
 };

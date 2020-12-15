@@ -23,14 +23,36 @@ Compound Compound::Evaluate(Context & C, World & W) {
     return actualCompound;
 }
 
+//std::vector<Compound> Compound::Filter(World & W) {
+//    std::vector<Compound> results;
+//    for (auto F : W.facts ) {
+//
+//        if ( F == *this)
+//        {
+//            results.push_back(F);
+//        }
+//    }
+//    return results;
+//}
+
 std::vector<Compound> Compound::Query(World & W) {
+
     std::vector<Compound> results;
-    for (auto F : W.facts ) {
-        if ( F == *this)
+
+    for (auto F : W.facts )
+    {
+        for ( unsigned int i = 0; i < F.terms.size(); i++)
         {
-            results.push_back(F);
+            if (F.terms[i].type != VARIABLE)
+            {
+                if ( F.terms[i] == terms[i])
+                {
+                    results.push_back(F);
+                }
+            }
         }
     }
+
     return results;
 }
 
