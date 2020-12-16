@@ -91,11 +91,13 @@ int main(int argc, char **argv) {
                     std::cout << " RESULT - " << results[rcount] << std::endl;
 
                     for ( unsigned int tcount = 0; tcount < results[rcount].terms.size(); tcount++ ) {
-                        std::cout << " TERM - " << results[rcount].terms[tcount] << std::endl;
+                        std::cout << " RES - " << results[rcount].terms[tcount] << std::endl;
+                        std::cout << " QRY - " << action.preconditionList[0].terms[tcount] << std::endl;
 
-//                        if ( rcompound.terms[tcount].type == VARIABLE) {
-                            context.NewBinding(rcompound.terms[tcount], results[rcount].terms[tcount]);
-//                        }
+                        if ( ( rcompound.terms[tcount].type == CONSTANT ) &&
+                             ( action.preconditionList[0].terms[tcount].type == VARIABLE ) ) {
+                            context.NewBinding(action.preconditionList[0].terms[tcount],rcompound.terms[tcount]);
+                        }
                     }
                 }
             }
