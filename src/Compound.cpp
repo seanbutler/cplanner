@@ -13,10 +13,10 @@ std::ostream& operator<<(std::ostream& os, const Compound& S)
     return os;
 }
 
-Compound Compound::Evaluate(Context & C, World & W) {
+Compound Compound::Reify(Context & C, World & W) {
     Compound actualCompound;
     for ( auto T : this->terms ) {
-        actualCompound.terms.push_back(T.GetActualValue(C));
+        actualCompound.terms.push_back(T.Reify(C));
     }
     std::cout << actualCompound;
 
@@ -35,9 +35,10 @@ Compound Compound::Evaluate(Context & C, World & W) {
 //    return results;
 //}
 
-std::vector<Compound> Compound::Query(World & W) {
+World Compound::Query(World & W) {
 
-    std::vector<Compound> results;
+//    std::vector<Compound> results;
+    World result;
 
     for (auto F : W.facts )
     {
@@ -47,12 +48,12 @@ std::vector<Compound> Compound::Query(World & W) {
             {
                 if ( F.terms[i] == terms[i])
                 {
-                    results.push_back(F);
+                    result.facts.push_back(F);
                 }
             }
         }
     }
 
-    return results;
+    return result;
 }
 

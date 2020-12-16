@@ -45,17 +45,26 @@ public:
     }
 
     // TODO - consider moving this over to the context object
-    Term GetActualValue(Context & S) {
+    Term Reify(Context & S) {
 
         if (this->getType() == TermType::VARIABLE) {
             for (auto B : S.bindings) {
                 if ( value == B.first.value ) {
-                    return B.second.GetActualValue(S);
+                    return B.second.Reify(S);
                 }
             }
         }
 
         return *this;
+    }
+
+    bool operator==(const Term & other) const{
+        if (this->type == other.type) {
+            if (this->value == other.value) {
+                return true;
+            }
+        }
+        return false;
     }
 
     virtual TermType getType()  { return type; };

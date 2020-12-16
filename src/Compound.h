@@ -36,10 +36,6 @@ public:
         terms.push_back(F);
     }
 
-    virtual ~Compound() {
-        terms.clear();
-    }
-
     Compound(Term F, Term A1)
     {
         terms.push_back(F);
@@ -51,6 +47,10 @@ public:
         terms.push_back(F);
         terms.push_back(A1);
         terms.push_back(A2);
+    }
+
+    virtual ~Compound() {
+        terms.clear();
     }
 
     void AddTerm(Term A) {
@@ -80,11 +80,9 @@ public:
         return false;
     }
 
-
-
     friend std::ostream& operator<<(std::ostream& os, const Compound& S);
-    Compound Evaluate(Context & C, World & W);
-    std::vector<Compound> Query(World & W);
+    Compound Reify(Context & C, World & W);
+    World Query(World & W);
 
     std::vector<Term> terms;
 };
